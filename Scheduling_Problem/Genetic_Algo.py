@@ -3,7 +3,7 @@
 """
 Created on Sat Mar 28 21:23:00 2020
 
-@author: harsha
+@author: harsha and namrata 
 """
 import Scheduling_Data as sd
 import prettytable as prettytable
