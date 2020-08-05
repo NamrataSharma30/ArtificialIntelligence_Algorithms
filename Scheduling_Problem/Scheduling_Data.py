@@ -3,7 +3,7 @@
 """
 Created on Sat Mar 21 14:09:09 2020
 
-@author: harsha
+@author: harsha and namrata
 """
 
 import random
