@@ -3,7 +3,7 @@
 """
 Created on Sat Mar 21 16:21:38 2020
 
-@author: harsha
+@author: harsha and namrata
 """
 import Scheduling_Data as sd
 import operator
