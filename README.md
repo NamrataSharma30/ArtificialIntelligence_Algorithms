@@ -47,3 +47,24 @@ After getting fitness, we get a new generation of schedule by selecting the sche
 This search algorithm does not allow many bad moves and optimizes the scheduling problem by gradually decreasing their size and frequency, and thus, is guaranteed to escape local maxima. When the algorithm runs, it has a starting temperature of 100, a minimum temperature of 1 and a cooling rate of 0.2. The energy of both the current schedule and new schedule solutions are calculated. Next, acceptance probability is calculated: if the new solution is better, it is returned; else we continue with the probability of (difference between the energies)/temperature. The algorithm continues till the system cools down sufficiently i.e. until temperature is 1. Though this algorithm is guaranteed to find the solution, if there exists one, but the solution is not always optimal, especially with lower cooling rates. The heuristics used in the genetic algorithm are applied here as well, to enhance the efficiency of the schedule.
 
 
+### KNN Implementation:
+I have implemented the k-nearest-neighbors (KNN) algorithm to classify between spam and ham text messages. I used the dataset from Kaggle [2], which has 5574 text messages labeled as spam or ham. This data was collected especially for SMS Spam Research. I leveraged Natural Language Processing packages offered by Python to pre-process the data and train the model [1]. I start by checking for null values in the dataset (there were not any null values in this dataset) and removing all the unnamed columns. In the pre-processing step, I cleaned the text by removing the following – stopwords, punctuation, URL, HTML tags, whitespace, implemented tokenization and stemming (the process of reducing words to their root form) using Lancaster Stemmer and converted accented characters to ASCII characters. After cleaning the text, I stored the clean data in a new CSV file called NormalizedData.csv and this file acts as the bag of words.
+I added 0 and 1 labels/classes to the clean dataset for spam and ham respectively and split the dataset into training and test datasets. 70% dedicated to training the model and 30% to test it. Before training the model, the training and test text data are converted into floating-point numbers and both the datasets are normalized for better results. Normalization is done in the Pre-processing.py class using the below formula:
+
+                                                  **normalized_value = current-value - min_value / max_value - min_value**
+
+Then the model is trained with the normalized data, I used the KNeighborsClassifier provide by sklearn package. KNN is a supervised machine learning algorithm and can be used to solve both classification and regression problems. KNN algorithm assumes that similar things exist in proximity and it captures the idea of similarity (distance or proximity or closeness) by calculating the distance between points on the graph. Euclidean distance is a popular and familiar choice. The ‘k’ in k-nearest-neighbors represents the number of nearest neighbors and selecting the right value for k is important to classify the data well. To select the ‘k’ that’s right for your data, I ran the algorithm several times with different values of ‘k’ such that the number of errors reduces while observing the algorithm’s accuracy when it is fed the test data. I settled on 5 as the value of k. One of the advantages of the KNN algorithm is that there is no need to build a model or tune several parameters. Although, the limitation is that it can get significantly slower as the number of examples or predictors increases.
+I evaluated the algorithm using a confusion matrix which is a popular evaluation technique for classification algorithms. My algorithm gave 92.8% accuracy when the model was tested with the test data, see the screenshot below in Figure 1. I calculated the recall, precision, and accuracy using the following formulae – 
+
+                                                  **Recall = True_Positive / True_Positive + False_Negative
+                                                  Precision = True_Positive / True_Positive + False_Positive
+                                                  Accuracy = 2*precision*recall/precision + recall**
+
+
+## References:
+
+1. Hafsa Jabeen. Stemming and Lemmatization in Python. 2018. https://www.datacamp.com/community/tutorials/stemming-lemmatization-python
+2. SMS Spam Collection Dataset. UCI Machine Learning. https://www.kaggle.com/uciml/sms-spam-collection-dataset
+3. Avinash Navlani. KNN Classification using Sickit-learn. 2018. https://www.datacamp.com/community/tutorials/k-nearest-neighbor-classification-scikit-learn
+
+
